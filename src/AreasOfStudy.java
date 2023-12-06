@@ -3,6 +3,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.io.*;
+import java.util.Scanner;
+
 
 public class AreasOfStudy {
     HashMap<String, ArrayList> areasOfStudyMap=new HashMap<>();
@@ -10,6 +13,7 @@ public class AreasOfStudy {
 
 
     public AreasOfStudy(){
+        //Scanner sc= new Scanner(new File("fakeData"));
         this.listOfDegrees.add("COMP");
         this.listOfDegrees.add("AMST");
         this.listOfDegrees.add("ECON");

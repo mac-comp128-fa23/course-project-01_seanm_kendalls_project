@@ -21,9 +21,9 @@ public class AreasOfStudy {
         ArrayList<String> AMST= new ArrayList<String>();
         AMST.add("100");
         ArrayList<String> ALL= new ArrayList<String>();
-        ALL.add("ECON 119");
-        ALL.add("COMP 123");
-        ALL.add("AMST 100");
+        ALL.add("119");
+        ALL.add("123");
+        ALL.add("100");
 
 
         this.areasOfStudyMap.put("ALL", ALL);

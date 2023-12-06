@@ -1,23 +1,23 @@
 import java.util.ArrayList;
 
 public class DegreeHelper {
-    ArrayList<Integer> classesTaken;
-    public DegreeHelper(ArrayList<Integer> classes){
+    ArrayList<String> classesTaken;
+    public DegreeHelper(ArrayList<String> classes){
         this.classesTaken=classes;
 
     }
-    public ArrayList<Integer> getClassesTaken(){
+    public ArrayList<String> getClassesTaken(){
         return this.classesTaken;
     }
     public static void main(String[] args) {
-        ArrayList<Integer> classesTak=new ArrayList<Integer>();
-        classesTak.add(128);
-        classesTak.add(119);
-        classesTak.add(240);
-        DegreeHelper degreeHelper= new DegreeHelper(classesTaken);
-        degreeHelper.classesTaken=classesTak;
+        ArrayList<String> classesTak=new ArrayList<String>();
+        classesTak.add("COMP123");
+        classesTak.add("ECON119");
+        DegreeHelper degreeHelper= new DegreeHelper(classesTak);
+        //degreeHelper.classesTaken=classesTak;
         AreasOfStudy degreesMaps= new AreasOfStudy();
 
+        System.out.println(DegreeComparator.DegreeCompletionReport(degreesMaps,classesTak));
 
     }
 }

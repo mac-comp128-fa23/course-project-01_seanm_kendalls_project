@@ -5,22 +5,31 @@ import java.util.Map;
 import java.util.Set;
 
 public class AreasOfStudy {
-    HashMap<String, ArrayList> areasOfStudyList;
+    HashMap<String, ArrayList> areasOfStudyMap=new HashMap<>();
     ArrayList<String> listOfDegrees= new ArrayList<String>();
 
 
     public AreasOfStudy(){
-        this.areasOfStudyList=new HashMap<ArrayList>();
-        this.areasOfStudyList.add(classesInDegree(null));
-    }
+        this.listOfDegrees.add("COMP");
+        this.listOfDegrees.add("AMST");
+        this.listOfDegrees.add("ECON");
 
-    private ArrayList classesInDegree(String degree) {
-       ArrayList<String> classesInDegreeMap = new ArrayList<String>();
-       classesInDegreeMap.add("Com");
-       classesInDegreeMap.put(128,"Comp 128");
-       classesInDegreeMap.put(240,"Comp 240");
-       return classesInDegreeMap;
+        ArrayList<String> ECON= new ArrayList<String>();
+        ECON.add("119");
+        ArrayList<String> COMP= new ArrayList<String>();
+        COMP.add("123");
+        ArrayList<String> AMST= new ArrayList<String>();
+        AMST.add("100");
+        ArrayList<String> ALL= new ArrayList<String>();
+        ALL.add("ECON 119");
+        ALL.add("COMP 123");
+        ALL.add("AMST 100");
 
+
+        this.areasOfStudyMap.put("ALL", ALL);
+        this.areasOfStudyMap.put("ECON", ECON);
+        this.areasOfStudyMap.put("COMP", COMP);
+        this.areasOfStudyMap.put("AMST", AMST);
     }
     
     

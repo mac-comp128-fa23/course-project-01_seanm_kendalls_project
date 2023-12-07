@@ -14,9 +14,10 @@ import java.io.IOException;
 public class AreasOfStudy {
     HashMap<String, ArrayList> areasOfStudyMap=new HashMap<>();
     ArrayList<String> listOfDegrees= new ArrayList<String>();
-
+    private static ArrayList<String> allCourses;
 
     public AreasOfStudy(){
+        allCourses = new ArrayList<>();
         //Scanner sc= new Scanner(new File("fakeData"));
         this.listOfDegrees.add("COMP");
         this.listOfDegrees.add("AMST");
@@ -51,15 +52,40 @@ public class AreasOfStudy {
         {  
             
         String[] classInArea = line.split(splitBy);    // use comma as separator  
-        System.out.println("Class [Course Code=" + classInArea[1] + ", Required For Major=" + classInArea[2] + ", Required for Minor=" + classInArea[3] + "]");  
+       // System.out.println("Class [Course Code=" + classInArea[1] + ", Required For Major=" + classInArea[2] + ", Required for Minor=" + classInArea[3] + "]");  
         }  
         }   
         catch (IOException e)   
         {  
         e.printStackTrace();  
-        }  
+        } 
 
+        makeAllCoursesList();
+        
+
+    //System.out.println(allCourses);
+    }
+
+    public ArrayList<String> makeAllCoursesList() {
+        String line = "";  
+        String splitBy = ","; 
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("All_Courses.csv"));  
+            while ((line = br.readLine()) != null) {   
+                String[] courses = line.split(splitBy); 
+                allCourses.add(courses[1]); 
+            }  
+            br.close();
+        }
+        catch (IOException e) {  
+            e.printStackTrace();  
+        }
+        //System.out.println(allCourses);
+        return allCourses;
     }
     
-    
+    public ArrayList<String> getAllCourses() {
+        //System.out.println(allCourses);
+        return allCourses;
+    }
 }

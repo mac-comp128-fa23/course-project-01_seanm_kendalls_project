@@ -8,59 +8,91 @@ import java.util.Scanner;
 import java.io.BufferedReader;  
 import java.io.FileReader;  
 import java.io.IOException;
-
+import java.io.File;
 
 
 public class AreasOfStudy {
-    HashMap<String, ArrayList> areasOfStudyMap=new HashMap<>();
-    ArrayList<String> listOfDegrees= new ArrayList<String>();
+    private static HashMap<String, HashMap<String, Float>> areasOfStudyMap=new HashMap<>();
+    private static ArrayList<String> listOfDegrees= new ArrayList<String>();
     private static ArrayList<String> allCourses;
 
     public AreasOfStudy(){
         allCourses = new ArrayList<>();
-        //Scanner sc= new Scanner(new File("fakeData"));
-        this.listOfDegrees.add("COMP");
-        this.listOfDegrees.add("AMST");
-        this.listOfDegrees.add("ECON");
-
-        ArrayList<String> ECON= new ArrayList<String>();
-        ECON.add("119");
-        ArrayList<String> COMP= new ArrayList<String>();
-        COMP.add("123");
-        ArrayList<String> AMST= new ArrayList<String>();
-        AMST.add("100");
-        ArrayList<String> ALL= new ArrayList<String>();
-        ALL.add("119");
-        ALL.add("123");
-        ALL.add("100");
-
-
-        this.areasOfStudyMap.put("ALL", ALL);
-        this.areasOfStudyMap.put("ECON", ECON);
-        this.areasOfStudyMap.put("COMP", COMP);
-        this.areasOfStudyMap.put("AMST", AMST);
-
+        areasOfStudyMap = new HashMap<>();
 
         String line = "";  
-        String splitBy = ",";  
-        try   
-        {  
-        //parsing a CSV file into BufferedReader class constructor  
-        BufferedReader br = new BufferedReader(new FileReader("Areas_of_Study_-_AMST_Major_&_Minor.csv"));  
-        ArrayList<String[]> departmentArray=new ArrayList<String[]>();
-        while ((line = br.readLine()) != null)   //returns a Boolean value  
-        {  
-            
-        String[] classInArea = line.split(splitBy);    // use comma as separator  
-       // System.out.println("Class [Course Code=" + classInArea[1] + ", Required For Major=" + classInArea[2] + ", Required for Minor=" + classInArea[3] + "]");  
-        }  
-        }   
-        catch (IOException e)   
-        {  
-        e.printStackTrace();  
-        } 
+        String splitBy = ","; 
 
         makeAllCoursesList();
+
+        //the code to iterate through files in a directory is modified from Mike Samuel on stackoverflow: https://stackoverflow.com/a/4917347
+        File dir = new File("course-project-01-seanm-kendalls_project/csv_files");
+        File[] files = dir.listFiles();
+        if (files != null) {
+            for (File f : files) {
+                //this code is modified from *insert link*
+                try {
+                    BufferedReader br = new BufferedReader(new FileReader(f));  
+                    String firstLine = br.readLine();
+                    String[] firstValues = firstLine.split(splitBy);
+                    if (firstValues[4] != null) {
+                        areasOfStudyMap.put(firstValues[1] + "Major", null);
+                        areasOfStudyMap.put(firstValues[1] + "Minor", null);
+                    } else {
+                        areasOfStudyMap.put(firstValues[1] + "Concentration", null);
+                    }
+                    while ((line = br.readLine()) != null) {   
+                        String[] reqs = line.split(splitBy); 
+                        //next: make a new hasmap to modify the name entry in areasofstudy map
+                    }  
+                    br.close();
+                } catch (IOException e) {  
+                    e.printStackTrace();  
+                }
+            }
+        }
+
+
+        //old code
+        //Scanner sc= new Scanner(new File("fakeData"));
+        // this.listOfDegrees.add("COMP");
+        // this.listOfDegrees.add("AMST");
+        // this.listOfDegrees.add("ECON");
+
+        // ArrayList<String> ECON= new ArrayList<String>();
+        // ECON.add("119");
+        // ArrayList<String> COMP= new ArrayList<String>();
+        // COMP.add("123");
+        // ArrayList<String> AMST= new ArrayList<String>();
+        // AMST.add("100");
+        // ArrayList<String> ALL= new ArrayList<String>();
+        // ALL.add("119");
+        // ALL.add("123");
+        // ALL.add("100");
+
+        // this.areasOfStudyMap.put("ALL", ALL);
+        // this.areasOfStudyMap.put("ECON", ECON);
+        // this.areasOfStudyMap.put("COMP", COMP);
+        // this.areasOfStudyMap.put("AMST", AMST);
+
+        //     String line = "";  
+        //     String splitBy = ",";  
+        //     try   
+        //     {  
+        //     //parsing a CSV file into BufferedReader class constructor  
+        //     BufferedReader br = new BufferedReader(new FileReader("Areas_of_Study_-_AMST_Major_&_Minor.csv"));  
+        //     ArrayList<String[]> departmentArray=new ArrayList<String[]>();
+        //     while ((line = br.readLine()) != null)   //returns a Boolean value  
+        //     {  
+                
+        //     String[] classInArea = line.split(splitBy);    // use comma as separator  
+        //    // System.out.println("Class [Course Code=" + classInArea[1] + ", Required For Major=" + classInArea[2] + ", Required for Minor=" + classInArea[3] + "]");  
+        //     }  
+        //     }   
+        //     catch (IOException e)   
+        //     {  
+        //     e.printStackTrace();  
+        //     } 
         
 
     //System.out.println(allCourses);
@@ -76,8 +108,7 @@ public class AreasOfStudy {
                 allCourses.add(courses[1]); 
             }  
             br.close();
-        }
-        catch (IOException e) {  
+        } catch (IOException e) {  
             e.printStackTrace();  
         }
         //System.out.println(allCourses);

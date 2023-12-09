@@ -12,45 +12,17 @@ import java.io.File;
 
 
 public class AreasOfStudy {
-    private static HashMap<String, HashMap<String, Float>> areasOfStudyMap=new HashMap<>();
+    public static HashMap<String, HashMap<String, String>> areasOfStudyMap=new HashMap<>();
     private static ArrayList<String> listOfDegrees= new ArrayList<String>();
     private static ArrayList<String> allCourses;
 
     public AreasOfStudy(){
         allCourses = new ArrayList<>();
-        areasOfStudyMap = new HashMap<>();
-
-        String line = "";  
-        String splitBy = ","; 
+        areasOfStudyMap = new HashMap<>(); 
 
         makeAllCoursesList();
 
-        //the code to iterate through files in a directory is modified from Mike Samuel on stackoverflow: https://stackoverflow.com/a/4917347
-        File dir = new File("course-project-01-seanm-kendalls_project/csv_files");
-        File[] files = dir.listFiles();
-        if (files != null) {
-            for (File f : files) {
-                //this code is modified from *insert link*
-                try {
-                    BufferedReader br = new BufferedReader(new FileReader(f));  
-                    String firstLine = br.readLine();
-                    String[] firstValues = firstLine.split(splitBy);
-                    if (firstValues[4] != null) {
-                        areasOfStudyMap.put(firstValues[1] + "Major", null);
-                        areasOfStudyMap.put(firstValues[1] + "Minor", null);
-                    } else {
-                        areasOfStudyMap.put(firstValues[1] + "Concentration", null);
-                    }
-                    while ((line = br.readLine()) != null) {   
-                        String[] reqs = line.split(splitBy); 
-                        //next: make a new hasmap to modify the name entry in areasofstudy map
-                    }  
-                    br.close();
-                } catch (IOException e) {  
-                    e.printStackTrace();  
-                }
-            }
-        }
+        
 
 
         //old code
@@ -114,9 +86,63 @@ public class AreasOfStudy {
         //System.out.println(allCourses);
         return allCourses;
     }
+
+    public static HashMap<String, HashMap<String, String>> makeAreasOfStudy() {
+        String line = "";  
+        String splitBy = ",";
+       
+        //the code to iterate through files in a directory is modified from Mike Samuel on stackoverflow: https://stackoverflow.com/a/4917347
+        File dir = new File("csv_files");
+        File[] files = dir.listFiles();
+        if (files != null) {
+            for (File f : files) {
+                //this code is modified from *insert link*
+                try {
+                    BufferedReader br = new BufferedReader(new FileReader(f));  
+                    String firstLine = br.readLine();
+                    String[] firstValues = firstLine.split(splitBy);
+                    String keyName1 = null;
+                    String keyName2 = null;
+                    HashMap<String, String> reqs = new HashMap<>();
+                    if (firstValues[4] != null) {
+                        keyName1 = firstValues[1] + "Major";
+                        //areasOfStudyMap.put(keyName1, null);
+                        keyName2 = firstValues[1] + "Minor";
+                        //areasOfStudyMap.put(keyName2, null);
+                    } else {
+                        keyName1 = firstValues[1] + "Concentration";
+                        //areasOfStudyMap.put(keyName1, null);
+                    }
+                    while ((line = br.readLine()) != null) {   
+                        String[] courses = line.split(splitBy);
+                        reqs.put(courses[1], courses[2]);
+                        //next: make a new hasmap to modify the name entry in areasofstudy map
+                    }  
+                    areasOfStudyMap.put(keyName1, reqs);
+                    if (keyName2 != null) {
+                        areasOfStudyMap.put(keyName2, reqs);
+                    }
+                    br.close();
+                } catch (IOException e) {  
+                    e.printStackTrace();  
+                }
+            }
+        }
+        System.out.println(areasOfStudyMap);
+        return areasOfStudyMap;
+    }
     
-    public ArrayList<String> getAllCourses() {
+    public static ArrayList<String> getAllCourses() {
         //System.out.println(allCourses);
         return allCourses;
+    }
+
+    public static HashMap<String, HashMap<String, String>> getAreasOfStudy() {
+        return areasOfStudyMap;
+    }
+
+    public static void main(String[] args) {
+        //makeAreasOfStudy();
+        System.out.println(getAreasOfStudy());
     }
 }

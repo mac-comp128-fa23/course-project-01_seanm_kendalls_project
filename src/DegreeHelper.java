@@ -42,12 +42,16 @@ public class DegreeHelper {
         // classesTaken.add("COMP123");
         // classesTak.add("ECON119");
         // degreeHelper.classesTaken=classesTak;
-        DegreeHelper degreeHelper= new DegreeHelper(classesTaken);
-        inputClasses();
-        System.out.println(classesTaken);
+
+
+        // DegreeHelper degreeHelper= new DegreeHelper(classesTaken);
+        // inputClasses();
+        // System.out.println(classesTaken);
+
+
         //AreasOfStudy degreesMaps= new AreasOfStudy();
         //degreesMaps.getAllCourses();
-        System.out.println(DegreeComparator.DegreeCompletionReport(degreesMaps,classesTaken));
+        //System.out.println(DegreeComparator.DegreeCompletionReport(degreesMaps,classesTaken));
 
     }
 }

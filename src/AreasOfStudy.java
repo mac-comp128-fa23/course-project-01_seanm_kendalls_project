@@ -104,7 +104,8 @@ public class AreasOfStudy {
                     String[] firstValues = firstLine.split(splitBy);
                     String keyName1 = null;
                     String keyName2 = null;
-                    HashMap<String, String> reqs = new HashMap<>();
+                    HashMap<String, String> reqs1 = new HashMap<>();
+                    HashMap<String, String> reqs2 = new HashMap<>();
                     if (firstValues.length > 2) {
                         keyName1 = firstValues[0] + " Major";
                         keyName2 = firstValues[0] + " Minor";
@@ -113,24 +114,34 @@ public class AreasOfStudy {
                     }
                     while ((line = br.readLine()) != null) {   
                         String[] courses = line.split(splitBy);
-                        if (courses[1] == null && courses[2] != null) {
-                            reqs.put(courses[2], courses[3]);
+                        for (String course : courses) {
+                            System.out.println(course);
                         }
                         if (courses.length > 1) {
-                            reqs.put(courses[1], courses[2]);
+
+                            reqs1.put(courses[1], courses[2]);
+                        }
+                        if (keyName2 != null) {
+                            if (courses.length > 3) {
+                                reqs2.put(courses[1], courses[3]);
+                            }
                         }
                     }
-                    areasOfStudyMap.put(keyName1, reqs);
+                    areasOfStudyMap.put(keyName1, reqs1);
                     if (keyName2 != null) {
-                        areasOfStudyMap.put(keyName2, reqs);
+                        areasOfStudyMap.put(keyName2, reqs2);
                     }
                     br.close();
                 } catch (IOException e) {  
                     e.printStackTrace();  
                 }
+                
             }
         }
-        System.out.println(areasOfStudyMap);
+        System.out.println(areasOfStudyMap.keySet());
+        // for (HashMap<String, String> value : areasOfStudyMap.values()) {
+        //     System.out.println(value.size());
+        // }
         return areasOfStudyMap;
     }
     

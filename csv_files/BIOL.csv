@@ -1,5 +1,4 @@
-Area of Study,Course Code,Required for Major,Required for Minor
-BIOL
+BIOL,Course Code,Required for Major,Required for Minor
 ,BIOL 112,,2.3
 ,BIOL 117,,2.3
 ,BIOL 170,1.1,1.223
@@ -54,6 +53,7 @@ CHEM,CHEM 112,6.1,
 ,CHEM 115,6.1,
 STAT,STAT 155,7.1,
 ,,,
-,,Other Major Requirements,Other Minor Requirements
-,,One supporting elective course approved by department chair,Courses approved by department
-,,Capstone presentation,Only one course below 150
+,,Other Major Requirements, One supporting elective course approved by department chair
+,,Other Major Requirements, Capstone presentation
+,,Other Minor Requirements, Courses approved by department
+,,Other Minor Requirements, Only one course below 150

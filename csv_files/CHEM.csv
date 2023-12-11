@@ -1,5 +1,4 @@
-Area of Study,Course Code,Required for Major,Required for Minor
-CHEM
+CHEM,Course Code,Required for Major,Required for Minor
 ,CHEM 111,,5.2
 ,CHEM 112,1.1,1.1
 ,CHEM 115,1.1,1.1
@@ -27,5 +26,5 @@ MATH,MATH 137,11.1,
 ,MATH 236,12.1,
 BIOL,BIOL 359,,5.2
 ,,,
-,,Other Major Requirements,Other Minor Requirements
-,,4 credits of CHEM 300,2 credits of CHEM 300
+,,Other Major Requirements,4 credits of CHEM 300
+,,Other Minor Requirements,2 credits of CHEM 300

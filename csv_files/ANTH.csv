@@ -1,5 +1,4 @@
-Area of Study,Course Code,Required for Major,Required for Minor
-ANTH
+ANTH,Course Code,Required for Major,Required for Minor
 ,ANTH 101 ,1.16,1.12
 ,ANTH 111 ,1.16,1.12
 ,ANTH 112 ,5.16,2.4
@@ -40,6 +39,6 @@ ANTH
 ,ANTH 490 ,4.1,2.4
 ,ANTH 494 ,6.5,2.4
 ,,,
-,,Other Major Requirements,Other Minor Requirements
-,,Study away,Courses approved by department
-,,Electives approved by department,
+,,Other Major Requirements, Study away
+,,Other Major Requirements, Electives approved by department
+,,Other Minor Requirements, Courses approved by department

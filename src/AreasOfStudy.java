@@ -12,8 +12,8 @@ import java.io.File;
 
 
 public class AreasOfStudy {
-    public static HashMap<String, HashMap<String, String>> areasOfStudyMap=new HashMap<>();
-    private static ArrayList<String> listOfDegrees= new ArrayList<String>();
+    public static HashMap<String, HashMap<String, String>> areasOfStudyMap;
+    //private static ArrayList<String> listOfDegrees= new ArrayList<String>();
     private static ArrayList<String> allCourses;
 
     public AreasOfStudy(){
@@ -22,6 +22,7 @@ public class AreasOfStudy {
 
         makeAllCoursesList();
 
+        makeAreasOfStudy();
         
 
 
@@ -104,20 +105,21 @@ public class AreasOfStudy {
                     String keyName1 = null;
                     String keyName2 = null;
                     HashMap<String, String> reqs = new HashMap<>();
-                    if (firstValues[4] != null) {
-                        keyName1 = firstValues[1] + "Major";
-                        //areasOfStudyMap.put(keyName1, null);
-                        keyName2 = firstValues[1] + "Minor";
-                        //areasOfStudyMap.put(keyName2, null);
+                    if (firstValues.length > 2) {
+                        keyName1 = firstValues[0] + " Major";
+                        keyName2 = firstValues[0] + " Minor";
                     } else {
-                        keyName1 = firstValues[1] + "Concentration";
-                        //areasOfStudyMap.put(keyName1, null);
+                        keyName1 = firstValues[0] + " Concentration";
                     }
                     while ((line = br.readLine()) != null) {   
                         String[] courses = line.split(splitBy);
-                        reqs.put(courses[1], courses[2]);
-                        //next: make a new hasmap to modify the name entry in areasofstudy map
-                    }  
+                        if (courses[1] == null && courses[2] != null) {
+                            reqs.put(courses[2], courses[3]);
+                        }
+                        if (courses.length > 1) {
+                            reqs.put(courses[1], courses[2]);
+                        }
+                    }
                     areasOfStudyMap.put(keyName1, reqs);
                     if (keyName2 != null) {
                         areasOfStudyMap.put(keyName2, reqs);
@@ -142,7 +144,6 @@ public class AreasOfStudy {
     }
 
     public static void main(String[] args) {
-        //makeAreasOfStudy();
-        System.out.println(getAreasOfStudy());
+        AreasOfStudy test = new AreasOfStudy();
     }
 }

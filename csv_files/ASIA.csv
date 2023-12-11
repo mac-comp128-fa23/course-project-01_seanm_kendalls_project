@@ -1,5 +1,4 @@
-Area of Study,Course Code,Required for Major,Required for Minor
-ASIA
+ASIA,Course Code,Required for Major,Required for Minor
 ,ASIA 111,1.1,1.1
 ,ASIA 112,2.8,2.4
 ,ASIA 113,2.8,2.4
@@ -72,9 +71,10 @@ RELI,RELI 233,2.8,2.4
 ,RELI 336,2.8,2.4
 SOCI,SOCI 285,2.8,2.4
 ,,,
-,,Other Major Requirements,Other Minor Requirements
-,,Capstone course or independent project,Courses approved by department
-,,Study away in Asia or approved alternate,No more than 3 courses can be about one country
-,,Four courses from single relevant discipline,
-,,No more than 4 courses can be in Asian language study,
-,,No more than 6 courses can be about one country,
+,,Other Major Requirements, Capstone course or independent project
+,,Other Major Requirements, Study away in Asia or approved alternate
+,,Other Major Requirements, Four courses from single relevant discipline
+,,Other Major Requirements, No more than 4 courses can be in Asian language study
+,,Other Major Requirements, No more than 6 courses can be about one country,
+,,Other Minor Requirements, Courses approved by department
+,,Other Minor Requirements, No more than 3 courses can be about one country

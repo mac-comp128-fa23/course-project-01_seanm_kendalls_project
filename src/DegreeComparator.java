@@ -1,6 +1,30 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DegreeComparator {
+
+    public DegreeComparator(ArrayList<String> userClasses) {
+        HashMap<String, HashMap<String, String>> areasOfStudy = AreasOfStudy.getAreasOfStudy();
+
+        for (Map.Entry<String, HashMap<String, String>> area : areasOfStudy.entrySet()) {
+            String areaName = area.getKey();
+            //HashMap<String, String> courses = area.getValue();
+            for (Map.Entry<String, String> course : area.getValue().entrySet()) {
+                if (userClasses.contains(course)) {
+                    if (course.getValue().equals("1")) {
+
+                    }
+                }
+            }
+        }
+
+
+
+
+    }
+
+
     // static String DegreeCompletionReport(AreasOfStudy areasOfStudy, ArrayList<String> classesTaken){
     //     String totalPrint="Degree Completion Report";
     //     for(String s: areasOfStudy.areasOfStudyMap.keySet()){

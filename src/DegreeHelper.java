@@ -19,11 +19,11 @@ public class DegreeHelper {
                 break;
             }
             inp = inp.toUpperCase();
-            if (!degreesMaps.getAllCourses().contains(inp)) {
+            if (!AreasOfStudy.getAllCourses().contains(inp)) {
                 System.out.println("The course you entered is not in the Course Catalog. Please enter a valid course: ");
             } else if (classesTaken.contains(inp)) {
                 System.out.println("You already entered that course. Please enter a different course: ");
-            } else if (degreesMaps.getAllCourses().contains(inp)) {
+            } else if (AreasOfStudy.getAllCourses().contains(inp)) {
                 classesTaken.add(inp);
                 System.out.println("Enter another course you have taken (enter 'q' after entering all of your courses): ");
             }

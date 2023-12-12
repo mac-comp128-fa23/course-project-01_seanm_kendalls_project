@@ -114,9 +114,9 @@ public class AreasOfStudy {
                     }
                     while ((line = br.readLine()) != null) {   
                         String[] courses = line.split(splitBy);
-                        for (String course : courses) {
-                            System.out.println(course);
-                        }
+                        // for (String course : courses) {
+                        //     System.out.println(course);
+                        // }
                         if (courses.length > 1) {
 
                             reqs1.put(courses[1], courses[2]);
@@ -135,10 +135,10 @@ public class AreasOfStudy {
                 } catch (IOException e) {  
                     e.printStackTrace();  
                 }
-                
+
             }
         }
-        System.out.println(areasOfStudyMap.keySet());
+        // System.out.println(areasOfStudyMap);
         // for (HashMap<String, String> value : areasOfStudyMap.values()) {
         //     System.out.println(value.size());
         // }
@@ -154,7 +154,8 @@ public class AreasOfStudy {
         return areasOfStudyMap;
     }
 
-    public static void main(String[] args) {
-        AreasOfStudy test = new AreasOfStudy();
-    }
+    // public static void main(String[] args) {
+    //     new AreasOfStudy();
+    //     System.out.println(getAreasOfStudy());
+    // }
 }

@@ -12,7 +12,7 @@ import java.io.File;
 
 
 public class AreasOfStudy {
-    public static HashMap<String, HashMap<String, String>> areasOfStudyMap;
+    private static HashMap<String, HashMap<String, String>> areasOfStudyMap;
     //private static ArrayList<String> listOfDegrees= new ArrayList<String>();
     private static ArrayList<String> allCourses;
 
@@ -71,7 +71,7 @@ public class AreasOfStudy {
     //System.out.println(allCourses);
     }
 
-    public ArrayList<String> makeAllCoursesList() {
+    public static ArrayList<String> makeAllCoursesList() {
         String line = "";  
         String splitBy = ","; 
         try {
@@ -145,12 +145,12 @@ public class AreasOfStudy {
         return areasOfStudyMap;
     }
     
-    public static ArrayList<String> getAllCourses() {
+    public ArrayList<String> getAllCourses() {
         //System.out.println(allCourses);
         return allCourses;
     }
 
-    public static HashMap<String, HashMap<String, String>> getAreasOfStudy() {
+    public HashMap<String, HashMap<String, String>> getAreasOfStudy() {
         return areasOfStudyMap;
     }
 

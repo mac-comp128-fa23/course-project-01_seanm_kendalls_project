@@ -34,14 +34,12 @@ public class DegreeHelper {
 
 
     public static void main(String[] args) {
-        // ArrayList<String> classesTaken=new ArrayList<String>();
-        // classesTaken.add("COMP123");
-        // classesTak.add("ECON119");
-        // degreeHelper.classesTaken=classesTak;
 
         AreasOfStudy areasOfStudy = new AreasOfStudy();
 
         inputClasses(areasOfStudy);
+
+        //System.out.println(areasOfStudy.getAreasOfStudy().get("ASIA Minor"));
 
         new DegreeComparator(classesTaken);
 

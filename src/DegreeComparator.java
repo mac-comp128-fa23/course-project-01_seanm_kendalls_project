@@ -132,15 +132,18 @@ public class DegreeComparator {
 
     public ArrayList<String> tiesGetOtherReqs(ArrayList<String> closestTies) {
         ArrayList<String> otherReqs = new ArrayList<>();
-        ArrayList<String> tempReqs = new ArrayList<>();
-
+        
         for (String area : closestTies) {
+            ArrayList<String> tempReqs = new ArrayList<>();
             HashMap<String, String> areaReqs = areasOfStudy.get(area);
+          //  System.out.println(areaReqs);
             for (Map.Entry<String, String> entry : areaReqs.entrySet()) {
                 if (entry.getKey().startsWith("Other")) {
+                   // System.out.println(entry);
                     tempReqs.add(entry.getValue());
                 }
             }
+            //System.out.println("tempreqs: " + tempReqs);
             if (!tempReqs.isEmpty()) {
                 otherReqs.add(area + " other requirements: " + tempReqs);
             }

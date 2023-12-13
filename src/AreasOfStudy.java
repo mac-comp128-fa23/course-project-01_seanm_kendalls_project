@@ -1,10 +1,5 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.io.*;
-import java.util.Scanner;
 import java.io.BufferedReader;  
 import java.io.FileReader;  
 import java.io.IOException;
@@ -34,7 +29,7 @@ public class AreasOfStudy {
             BufferedReader br = new BufferedReader(new FileReader("All_Courses.csv"));  
             while ((line = br.readLine()) != null) {   
                 String[] courses = line.split(splitBy); 
-                allCourses.add(courses[1]); 
+                allCourses.add(courses[1].toUpperCase()); 
             }  
             br.close();
         } catch (IOException e) {  

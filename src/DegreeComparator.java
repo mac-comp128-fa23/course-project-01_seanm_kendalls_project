@@ -3,8 +3,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DegreeComparator {
-    private static AreasOfStudy areasObject = new AreasOfStudy();
-    private static HashMap<String, HashMap<String, String>> areasOfStudy = areasObject.getAreasOfStudy();
+    private static HashMap<String, HashMap<String, String>> areasOfStudy = AreasOfStudy.getAreasOfStudy();
+    private static HashMap<String, Integer> compareCourses = new HashMap<>();
+    private static int val = 0;
 
     public DegreeComparator(ArrayList<String> userClasses) {
         System.out.println("Degree Completion Report:");
@@ -13,75 +14,97 @@ public class DegreeComparator {
 
         for (Map.Entry<String, HashMap<String, String>> area : areasOfStudy.entrySet()) {
             String areaName = area.getKey();
-            HashMap<String, Integer> compareCourses = new HashMap<>();
-
-            for (Map.Entry<String, String> entry : area.getValue().entrySet()) {
-                if (!entry.getKey().startsWith("Other")) {
-                    String code = entry.getValue();
-                    String currCode = "";
-                    if (code.length() > 1) {
-                        if (code.length() == 2) {
-                            currCode = code;
-                        } else {
-                            currCode = code.substring(0, 3);
-                        }
-                        if (!compareCourses.keySet().contains(currCode)) {
-                            compareCourses.put(currCode, 0);
-                        }
-                    }
-                }
-            }
-            
+            compareCourses = setUpCompareCourses(area);
 
             for (Map.Entry<String, String> course : area.getValue().entrySet()) {
-
-                if (userClasses.contains(course.getKey())) {
-                    String userCode = course.getValue();
-                    if (userCode.length() > 1) {
-                        int val = 0;
-                        if (userCode.length() == 2) {
-                            val = compareCourses.get(userCode);
-                        } else {
-                            val = compareCourses.get(userCode.substring(0, 3));
-                        }
-                        if (val == Integer.parseInt(userCode.substring(2, 3))) {
-                            if (userCode.length() >= 3) {
-                                Integer length = 3;
-                                while (length <= userCode.length()) {
-                                    String group = userCode.substring(length-1, length);
-                                    for (String courseVal : compareCourses.keySet()) {
-                                        if (courseVal.startsWith(group)) {
-                                            val = compareCourses.get(courseVal);
-                                            //this is very recursive-y. should we make it recursive? if so how.
-                                            if (val != Integer.parseInt(userCode.substring(2, 3))) {
-                                                val++;
-                                                compareCourses.replace(userCode.substring(0, 3), val);
-                                            }
-                                            break;
-                                        }
-                                    }
-                                    length++;
-                                }
-                            }
-                        } else if (val != Integer.parseInt(userCode.substring(2, 3))) {
-                            val++;
-                            compareCourses.replace(userCode.substring(0, 3), val);
-                        }
-                    }
-
-                }
+                compareCourses = compareUserCourses(compareCourses, course, userClasses);
             }
 
+           // System.out.println(areaName + ": " + compareCourses);
+    
             int num = 0;
             for (Map.Entry<String, Integer> c : compareCourses.entrySet()) {
                 int currNum = (Integer.parseInt(c.getKey().substring(2, 3)) - c.getValue());
+                //System.out.println("\n currNum: " + currNum + "  num : " + num + "\n");
                 num += currNum;
             }
 
             reports.put(areaName, num);
 
         }
+        //System.out.println("reports: \n" + reports);
+        findClosestAreas(reports);
+    }
 
+
+    public HashMap<String, Integer> setUpCompareCourses(Map.Entry<String, HashMap<String, String>> area) {
+        HashMap<String, Integer> compareCourses = new HashMap<>();
+        for (Map.Entry<String, String> entry : area.getValue().entrySet()) {
+            if (!entry.getKey().startsWith("Other")) {
+                String code = entry.getValue();
+                String currCode = "";
+                if (code.length() > 1) {
+                    if (code.length() == 2) {
+                        currCode = code;
+                    } else {
+                        currCode = code.substring(0, 3);
+                    }
+                    if (!compareCourses.keySet().contains(currCode)) {
+                        compareCourses.put(currCode, 0);
+                    }
+                }
+            }
+        }
+        return compareCourses;
+    }
+
+
+    public HashMap<String, Integer> compareUserCourses(HashMap<String, Integer> compareCourses, Map.Entry<String, String> course, ArrayList<String> userClasses) { 
+        // System.out.println(userClasses);
+        // System.out.println(course.getKey());
+        if (userClasses.contains(course.getKey().toUpperCase().trim())) {
+            //System.out.println("\n yes \n");
+            String userCode = course.getValue();
+            //System.out.println(userCode);
+            if (userCode.length() > 1) {
+                if (userCode.length() == 2) {
+                    val = compareCourses.get(userCode);
+                    //System.out.println(val);
+                } else {
+                    val = compareCourses.get(userCode.substring(0, 3));
+                    //System.out.println(val);
+                }
+                if (val == Integer.parseInt(userCode.substring(2, 3))) {
+                    if (userCode.length() >= 3) {
+                        Integer length = 3;
+                        while (length <= userCode.length()) {
+                            String group = userCode.substring(length-1, length);
+                            for (String courseVal : compareCourses.keySet()) {
+                                if (courseVal.startsWith(group)) {
+                                    val = compareCourses.get(courseVal);
+                                    //this is very recursive-y. should we make it recursive? if so how.
+                                    if (val != Integer.parseInt(userCode.substring(2, 3))) {
+                                        val++;
+                                        compareCourses.put(userCode.substring(0, 3), val);
+                                    }
+                                    break;
+                                }
+                            }
+                            length++;
+                        }
+                    }
+                } else if (val != Integer.parseInt(userCode.substring(2, 3))) {
+                    val++;
+                    compareCourses.put(userCode.substring(0, 3), val);
+                }
+            }
+        }
+        //System.out.println(compareCourses);
+        return compareCourses;
+    }
+
+
+    public void findClosestAreas(HashMap<String, Integer> reports) {
         String closestArea = "";
         ArrayList<String> closestTies = new ArrayList<>();
         int minNum = 999;
@@ -117,16 +140,6 @@ public class DegreeComparator {
                 System.out.println("Please note these other aspects that are required for this area of study: \n" + otherReqs);
             }
         }
-
-        //loop through each name and compare num, making lowest num closest.
-        //print num classes left to complete for each area
-        //if num is 0, print separate statement saying already complete
-        //for closest areaOfStudy, print you need to take n more classes
-            //print other requirements
-            //areaOfStudy.get(areaName)
-                //get entry sets where key starts with "Other"
-                //print those out
-
     }
 
 
@@ -172,5 +185,4 @@ public class DegreeComparator {
             return null;
         }
     }
-
 }

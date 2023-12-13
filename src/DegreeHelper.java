@@ -14,7 +14,7 @@ public class DegreeHelper {
             if (inp.equals("q")) {
                 break;
             }
-            inp = inp.toUpperCase();
+            inp = inp.toUpperCase().trim();
             if (!areasOfStudy.getAllCourses().contains(inp)) {
                 System.out.println("The course you entered is not in the Course Catalog. Please enter a valid course: ");
             } else if (classesTaken.contains(inp)) {
@@ -38,8 +38,6 @@ public class DegreeHelper {
         AreasOfStudy areasOfStudy = new AreasOfStudy();
 
         inputClasses(areasOfStudy);
-
-        //System.out.println(areasOfStudy.getAreasOfStudy().get("ASIA Minor"));
 
         new DegreeComparator(classesTaken);
 

@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class DegreeHelper {
     private static ArrayList<String> classesTaken;
-    //private static AreasOfStudy degreesMaps;
 
     public static ArrayList<String> inputClasses(AreasOfStudy areasOfStudy) {
         classesTaken = new ArrayList<>();

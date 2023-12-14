@@ -8,7 +8,6 @@ import java.io.File;
 
 public class AreasOfStudy {
     private static HashMap<String, HashMap<String, String>> areasOfStudyMap;
-    //private static ArrayList<String> listOfDegrees= new ArrayList<String>();
     private static ArrayList<String> allCourses;
 
     public AreasOfStudy(){
@@ -35,7 +34,6 @@ public class AreasOfStudy {
         } catch (IOException e) {  
             e.printStackTrace();  
         }
-        //System.out.println(allCourses);
         return allCourses;
     }
 
@@ -48,7 +46,7 @@ public class AreasOfStudy {
         File[] files = dir.listFiles();
         if (files != null) {
             for (File f : files) {
-                //this code is modified from *insert link*
+                //the code to read a csv file modified from https://www.javatpoint.com/how-to-read-csv-file-in-java
                 try {
                     BufferedReader br = new BufferedReader(new FileReader(f));  
                     String firstLine = br.readLine();
@@ -65,9 +63,6 @@ public class AreasOfStudy {
                     }
                     while ((line = br.readLine()) != null) {   
                         String[] courses = line.split(splitBy);
-                        // for (String course : courses) {
-                        //     System.out.println(course);
-                        // }
                         if (courses.length > 1) {
                             reqs1.put(courses[1], courses[2]);
                         }
@@ -88,10 +83,6 @@ public class AreasOfStudy {
 
             }
         }
-        // System.out.println(areasOfStudyMap);
-        // for (HashMap<String, String> value : areasOfStudyMap.values()) {
-        //     System.out.println(value.size());
-        // }
         return areasOfStudyMap;
     }
     
@@ -103,9 +94,4 @@ public class AreasOfStudy {
     public static HashMap<String, HashMap<String, String>> getAreasOfStudy() {
         return areasOfStudyMap;
     }
-
-    // public static void main(String[] args) {
-    //     new AreasOfStudy();
-    //     System.out.println(getAreasOfStudy());
-    // }
 }

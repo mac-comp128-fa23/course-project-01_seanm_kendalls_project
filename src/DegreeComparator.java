@@ -1,4 +1,3 @@
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +8,7 @@ public class DegreeComparator {
     private static int val = 0;
 
     public DegreeComparator(ArrayList<String> userClasses) {
-        System.out.println("Degree Completion Report:");
+        System.out.println("\nDegree Completion Report:");
 
         HashMap<String, Integer> reports = new HashMap<>();
 
@@ -20,20 +19,16 @@ public class DegreeComparator {
             for (Map.Entry<String, String> course : area.getValue().entrySet()) {
                 compareCourses = compareUserCourses(compareCourses, course, userClasses);
             }
-
-           // System.out.println(areaName + ": " + compareCourses);
     
             int num = 0;
             for (Map.Entry<String, Integer> c : compareCourses.entrySet()) {
                 int currNum = (Integer.parseInt(c.getKey().substring(2, 3)) - c.getValue());
-                //System.out.println("\n currNum: " + currNum + "  num : " + num + "\n");
                 num += currNum;
             }
 
             reports.put(areaName, num);
 
         }
-        //System.out.println("reports: \n" + reports);
         findClosestAreas(reports);
     }
 
@@ -61,12 +56,8 @@ public class DegreeComparator {
 
 
     public HashMap<String, Integer> compareUserCourses(HashMap<String, Integer> compareCourses, Map.Entry<String, String> course, ArrayList<String> userClasses) { 
-        // System.out.println(userClasses);
-        // System.out.println(course.getKey());
         if (userClasses.contains(course.getKey().toUpperCase().trim())) {
-            //System.out.println("\n yes \n");
             String userCode = course.getValue();
-            //System.out.println(userCode);
             if (userCode.length() > 1) {
                 if (userCode.length() == 3) {
                     val = compareCourses.get(userCode);
@@ -74,7 +65,6 @@ public class DegreeComparator {
                     val = compareCourses.get(userCode.substring(0, 3));
                 }
                 if (val == Integer.parseInt(userCode.substring(2, 3))) {
-                //if it already counted the max num classes for that req group
                     if (userCode.length() > 3) {
                         int x=0;
                         while (x==0){
@@ -98,10 +88,6 @@ public class DegreeComparator {
                         }
                         
                     }
-
-                    
-
-
                    
                 } else if (val != Integer.parseInt(userCode.substring(2, 3))) {
                     val++;
@@ -109,7 +95,6 @@ public class DegreeComparator {
                 }
             }
         }
-        //System.out.println(compareCourses);
         return compareCourses;
     }
 
@@ -119,10 +104,11 @@ public class DegreeComparator {
         ArrayList<String> closestTies = new ArrayList<>();
         int minNum = 999;
         int tieNum = 999;
-
+        System.out.println("\nNumber of courses left to take for each area: \n");
         for (Map.Entry<String, Integer> r : reports.entrySet()) {
             String currArea = r.getKey();
             int currNum = r.getValue();
+            System.out.println(currArea + ": " + currNum + " courses");
             if (currNum == 0) {
                 System.out.println("You have taken already all of the courses required for the " + currArea + "!");
             } else if (currNum == minNum) {
@@ -134,17 +120,18 @@ public class DegreeComparator {
                 if (tieNum > minNum) {
                     closestTies.clear();
                 }
+                closestTies.add(currArea);
             }
         }
 
         if (closestTies != null && closestTies.size() > 1) {
-            System.out.println("The degrees with the fewest number of courses you still need to take are: " + closestTies + ". You need to take " + tieNum + " more courses for each of these areas of study to finish each degree.");
+            System.out.println("\nThe degrees with the fewest number of courses you still need to take are: " + closestTies + ". You need to take " + tieNum + " more courses for each of these areas of study to finish each degree.\n");
             ArrayList<String> otherReqs = tiesGetOtherReqs(closestTies);
             if (otherReqs != null) {
                 System.out.println("Please note these other aspects that are required for each of these areas of study: \n" + otherReqs);
             }
         } else {
-            System.out.println("The degree with the fewest number of courses you still need to take is: " + closestArea + ". You need to take " + minNum + " more courses for this area of study to finish this degree.");
+            System.out.println("\nThe degree with the fewest number of courses you still need to take is: " + closestArea + ". You need to take " + minNum + " more courses for this area of study to finish this degree.\n");
             String otherReqs = oneGetOtherReqs(closestArea);
             if (otherReqs != null) {
                 System.out.println("Please note these other aspects that are required for this area of study: \n" + otherReqs);
@@ -159,14 +146,12 @@ public class DegreeComparator {
         for (String area : closestTies) {
             ArrayList<String> tempReqs = new ArrayList<>();
             HashMap<String, String> areaReqs = areasOfStudy.get(area);
-          //  System.out.println(areaReqs);
             for (Map.Entry<String, String> entry : areaReqs.entrySet()) {
                 if (entry.getKey().startsWith("Other")) {
                    // System.out.println(entry);
                     tempReqs.add(entry.getValue());
                 }
             }
-            //System.out.println("tempreqs: " + tempReqs);
             if (!tempReqs.isEmpty()) {
                 otherReqs.add(area + " other requirements: " + tempReqs);
             }

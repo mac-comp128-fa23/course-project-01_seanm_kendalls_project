@@ -41,11 +41,6 @@ public class DegreeHelper {
 
         new DegreeComparator(classesTaken);
 
-        //degreesMaps.getAllCourses();
-        //System.out.println(DegreeComparator.DegreeCompletionReport(degreesMaps,classesTaken));
-
-
-
 
     }
 }

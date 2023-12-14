@@ -69,15 +69,18 @@ public class DegreeComparator {
             if (userCode.length() > 1) {
                 if (userCode.length() == 2) {
                     val = compareCourses.get(userCode);
-                    //System.out.println(val);
                 } else {
                     val = compareCourses.get(userCode.substring(0, 3));
-                    //System.out.println(val);
                 }
                 if (val == Integer.parseInt(userCode.substring(2, 3))) {
-                    if (userCode.length() >= 3) {
+                //if it already counted the max num classes for that req group
+                    if (userCode.length() > 2) {
+                    //if it has a 2 or more numbers after the '.'
                         Integer length = 3;
+                        //start with the second number
                         while (length <= userCode.length()) {
+                        //while there are more numbers following 
+                        //we need to check if the number value is full
                             String group = userCode.substring(length-1, length);
                             for (String courseVal : compareCourses.keySet()) {
                                 if (courseVal.startsWith(group)) {

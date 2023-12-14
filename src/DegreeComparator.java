@@ -1,3 +1,4 @@
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,35 +68,41 @@ public class DegreeComparator {
             String userCode = course.getValue();
             //System.out.println(userCode);
             if (userCode.length() > 1) {
-                if (userCode.length() == 2) {
+                if (userCode.length() == 3) {
                     val = compareCourses.get(userCode);
                 } else {
                     val = compareCourses.get(userCode.substring(0, 3));
                 }
                 if (val == Integer.parseInt(userCode.substring(2, 3))) {
                 //if it already counted the max num classes for that req group
-                    if (userCode.length() > 2) {
-                    //if it has a 2 or more numbers after the '.'
-                        Integer length = 3;
-                        //start with the second number
-                        while (length <= userCode.length()) {
-                        //while there are more numbers following 
-                        //we need to check if the number value is full
-                            String group = userCode.substring(length-1, length);
-                            for (String courseVal : compareCourses.keySet()) {
-                                if (courseVal.startsWith(group)) {
-                                    val = compareCourses.get(courseVal);
-                                    //this is very recursive-y. should we make it recursive? if so how.
-                                    if (val != Integer.parseInt(userCode.substring(2, 3))) {
-                                        val++;
-                                        compareCourses.put(userCode.substring(0, 3), val);
+                    if (userCode.length() > 3) {
+                        int x=0;
+                        while (x==0){
+                            for(Character c : userCode.substring(3).toCharArray()){
+                                String key="";
+                                for (String k : compareCourses.keySet()){
+                                    if (Integer.parseInt(k.substring(0,1))==Integer.parseInt(c.toString())){
+                                        key=k;
                                     }
-                                    break;
+                                }
+                                int val=0;
+                                if (compareCourses.keySet().contains(key)){
+                                    val= compareCourses.get(key);
+                                }
+                                if(val!=Integer.parseInt(key.substring(2,3))){
+
+                                    compareCourses.put(key, val+1);
+                                    x=1;
                                 }
                             }
-                            length++;
                         }
+                        
                     }
+
+                    
+
+
+                   
                 } else if (val != Integer.parseInt(userCode.substring(2, 3))) {
                     val++;
                     compareCourses.put(userCode.substring(0, 3), val);

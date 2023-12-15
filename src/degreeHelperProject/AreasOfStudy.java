@@ -92,7 +92,7 @@ public class AreasOfStudy {
                     }
                     while ((line = br.readLine()) != null) {   
                         String[] courses = line.split(splitBy);
-                        if (courses.length > 1) {
+                        if (courses.length > 2) {
                             reqs1.put(courses[1], courses[2]);
                         }
                         if (keyName2 != null) {

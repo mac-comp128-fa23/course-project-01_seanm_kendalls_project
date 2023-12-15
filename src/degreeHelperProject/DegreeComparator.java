@@ -17,6 +17,7 @@ public class DegreeComparator {
     private static HashMap<String, HashMap<String, String>> areasOfStudy = AreasOfStudy.getAreasOfStudy();
     private static HashMap<String, Integer> compareCourses = new HashMap<>();
     private static int val = 0;
+    public int numCoursesLeftForClosestStudy_ForTest=0;
 
     /**
      * 
@@ -143,12 +144,14 @@ public class DegreeComparator {
         if (closestTies != null && closestTies.size() > 1) {
             System.out.println("\nThe degrees with the fewest number of courses you still need to take are: " + closestTies + ". You need to take " + tieNum + " more courses for each of these areas of study to finish each degree.\n");
             ArrayList<String> otherReqs = tiesGetOtherReqs(closestTies);
+            numCoursesLeftForClosestStudy_ForTest=tieNum;
             if (otherReqs != null) {
                 System.out.println("Please note these other aspects that are required for each of these areas of study: \n" + otherReqs);
             }
         } else {
             System.out.println("\nThe degree with the fewest number of courses you still need to take is: " + closestArea + ". You need to take " + minNum + " more courses for this area of study to finish this degree.\n");
             String otherReqs = oneGetOtherReqs(closestArea);
+            numCoursesLeftForClosestStudy_ForTest=tieNum;
             if (otherReqs != null) {
                 System.out.println("Please note these other aspects that are required for this area of study: \n" + otherReqs);
             }
@@ -164,7 +167,7 @@ public class DegreeComparator {
             HashMap<String, String> areaReqs = areasOfStudy.get(area);
             for (Map.Entry<String, String> entry : areaReqs.entrySet()) {
                 if (entry.getKey().startsWith("Other")) {
-                   // System.out.println(entry);
+                   
                     tempReqs.add(entry.getValue());
                 }
             }

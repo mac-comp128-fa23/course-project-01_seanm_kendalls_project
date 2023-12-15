@@ -21,10 +21,12 @@ CHEM,Course Code,Required for Major,Required for Minor
 ,CHEM 474,,5.2
 ,CHEM 494,,5.2
 PHYS,PHYS 226,9.1,
-,PHYS 227,a.1,
-MATH,MATH 137,b.1,
-,MATH 236,c.1,
+,PHYS 227,A.1,
+MATH,MATH 137,B.1,
+,MATH 236,C.1,
 BIOL,BIOL 359,,5.2
 ,,,
-,Other Major Requirements 1,4 credits of CHEM 300
-,Other Minor Requirements 1,,2 credits of CHEM 300
+,,,
+,,,
+,Other Major Requirements,4 credits of CHEM 300,
+,Other Minor Requirements,,2 credits of CHEM 300

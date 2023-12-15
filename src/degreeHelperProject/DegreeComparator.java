@@ -1,12 +1,28 @@
+package degreeHelperProject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * The DegreeHelper class has a main method that runs the entire program. It also runs
+ * a scanner that takes a user's inputted classes and it puts them into an ArrayList.
+ * 
+ * @author Kendall Sullivan
+ * @author Sean Maxfield
+ * 
+ */
 public class DegreeComparator {
     private static HashMap<String, HashMap<String, String>> areasOfStudy = AreasOfStudy.getAreasOfStudy();
     private static HashMap<String, Integer> compareCourses = new HashMap<>();
     private static int val = 0;
 
+    /**
+     * 
+     * 
+     * @param userClasses an ArrayList of Strings representing the user's inputted classes.
+     */
     public DegreeComparator(ArrayList<String> userClasses) {
         System.out.println("\nDegree Completion Report:");
 

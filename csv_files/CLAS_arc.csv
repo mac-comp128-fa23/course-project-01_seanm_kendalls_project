@@ -1,0 +1,54 @@
+CLAS arc,Course Code,Required for Major,Required for Minor
+,CLAS 101,1.1,1.1
+,CLAS 111,,3.3
+,CLAS 113,,3.3
+,CLAS 115,,3.3
+,CLAS 117,,3.3
+,CLAS 121,2.1,1.1
+,CLAS 122,2.1,1.1
+,CLAS 127,2.1,1.1
+,CLAS 129,2.1,1.1
+,CLAS 130,2.1,1.1
+,CLAS 135,2.1,1.1
+,CLAS 145,2.1,1.1
+,CLAS 155,2.16,1.1
+,CLAS 194,,3.3
+,CLAS 200,,3.3
+,CLAS 202,,3.3
+,CLAS 212,,3.3
+,CLAS 214,,3.3
+,CLAS 218,,3.3
+,CLAS 220,,3.3
+,CLAS 223,4.1,2.1
+,CLAS 231,3.1,3.3
+,CLAS 235,,3.3
+,CLAS 237,3.1,3.3
+,CLAS 241,3.1,3.3
+,CLAS 260,6.1,3.3
+,CLAS 261,3.1,3.3
+,CLAS 270,6.1,3.3
+,CLAS 283,,3.3
+,CLAS 294,,3.3
+,CLAS 332,3.16,3.3
+,CLAS 338,3.16,3.3
+,CLAS 342,3.16,3.3
+,CLAS 362,3.16,3.3
+,CLAS 392,,3.3
+,CLAS 394,,3.3
+,CLAS 482,,3.3
+,CLAS 483,6.1,3.3
+,CLAS 485,6.1,3.3
+,CLAS 487,6.1,3.3
+,CLAS 490,5.1,3.3
+,CLAS 494,,3.3
+ANTH,ANTH 112,6.1,3.3
+,ANTH 340,6.1,3.3
+GEOG,GEOG 225,6.1,3.3
+GEOL,GEOL 165,6.1,3.3
+,GEOL 260,6.1,3.3
+,GEOL 265,6.1,3.3
+,GEOL 300,6.1,3.3
+,,,
+,Other Major Requirements 1,Major research project or CLAS 301,
+,Other Major Requirements 2,Study away,
+,Other Major Requirements 3,Field experience,

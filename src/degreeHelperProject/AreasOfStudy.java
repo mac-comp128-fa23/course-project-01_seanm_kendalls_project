@@ -84,11 +84,17 @@ public class AreasOfStudy {
                     String keyName2 = null;
                     HashMap<String, String> reqs1 = new HashMap<>();
                     HashMap<String, String> reqs2 = new HashMap<>();
-                    if (firstValues.length > 2) {
+                    if (firstValues.length > 3) {
                         keyName1 = firstValues[0] + " Major";
                         keyName2 = firstValues[0] + " Minor";
                     } else {
-                        keyName1 = firstValues[0] + " Concentration";
+                        if (firstValues[2].equals("Required for Minor")) {
+                            keyName1 = firstValues[0] + " Minor";
+                        } else if (firstValues[2].equals("Required for Major")) {
+                            keyName1 = firstValues[0] + " Major";
+                        } else if (firstValues[2].equals("Required for Concentration")) {
+                            keyName1 = firstValues[0] + " Concentration";
+                        }
                     }
                     while ((line = br.readLine()) != null) {   
                         String[] courses = line.split(splitBy);
@@ -101,6 +107,7 @@ public class AreasOfStudy {
                             }
                         }
                     }
+                    
                     areasOfStudyMap.put(keyName1, reqs1);
                     if (keyName2 != null) {
                         areasOfStudyMap.put(keyName2, reqs2);

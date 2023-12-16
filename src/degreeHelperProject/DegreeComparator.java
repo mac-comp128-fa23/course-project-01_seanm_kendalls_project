@@ -20,7 +20,10 @@ public class DegreeComparator {
     public int numCoursesLeftForClosestStudy_ForTest=0;
 
     /**
-     * 
+     * Loops through each course in each area of study and compares it to each course from the list
+     * of classes the user inputted. Puts the number of courses the user has left to take for each
+     * area of study into a HashMap with the area's name and finds which area(s) they are closest
+     * to finishing.
      * 
      * @param userClasses an ArrayList of Strings representing the user's inputted classes.
      */
@@ -49,7 +52,17 @@ public class DegreeComparator {
         findClosestAreas(reports);
     }
 
-
+    /**
+     * For each entry set in an area of study, gets the first three characters of the value and adds it
+     * with its course name to a HashMap if it is unique.
+     * 
+     * @param area a HashMap of Strings mapping to Strings representing the course names of an area of
+     * study mapping to their String value used to indicate how the course is required in the area.
+     * @return a HashMap of Strings mapping to integers representing a the first three characters of its
+     * value in the area parameter, which represents the requirement group and the number of courses
+     * required for that group, mapping to an integer value of zero representing the number of courses the
+     * user has taken in that group.
+     */
     public HashMap<String, Integer> setUpCompareCourses(Map.Entry<String, HashMap<String, String>> area) {
         HashMap<String, Integer> compareCourses = new HashMap<>();
         for (Map.Entry<String, String> entry : area.getValue().entrySet()) {
@@ -71,7 +84,17 @@ public class DegreeComparator {
         return compareCourses;
     }
 
-
+    /**
+     * Checks if the list of the user's courses contains a specific course from an area of study and if so,
+     * increases its value in CompareCourses, as long as it is not already at the max value based on the number
+     * of required courses parsed from the course's entry value.
+     * 
+     * @param compareCourses a HashMap of Strings mapping to Integers representing the number of courses required
+     * for a requirement group mapping to the number of courses a user has taken in that requirement group
+     * @param course a HashMap entry of Strings representing a course naame and its requirement group value.
+     * @param userClasses an ArrayList of Strings representing the inputted courses a user has taken.
+     * @return compareCourses, with updated values. 
+     */
     public HashMap<String, Integer> compareUserCourses(HashMap<String, Integer> compareCourses, Map.Entry<String, String> course, ArrayList<String> userClasses) { 
         if (userClasses.contains(course.getKey().toUpperCase().trim())) {
             String userCode = course.getValue();
@@ -115,7 +138,13 @@ public class DegreeComparator {
         return compareCourses;
     }
 
-
+    /**
+     * Takes in a HashMap of each area of study (String) and the number of courses (Integer) left for
+     * the user to take in each area and compares them to each other, adding the name of the area to a
+     * list of areas if the minimum number of classes left is the same as the previous minimum area.
+     * Prints out the closest area(s) the user is to finishing and finds if there are any other requirements
+     * for that area(s) and prints those as well.
+     */
     public void findClosestAreas(HashMap<String, Integer> reports) {
         String closestArea = "";
         ArrayList<String> closestTies = new ArrayList<>();
@@ -158,7 +187,13 @@ public class DegreeComparator {
         }
     }
 
-
+    /**
+     * Finds what other requirements (non-course related) there are from the entry in areasOfStudy for each
+     * closest area.
+     * 
+     * @param closestTies an ArrayList of Strings representing areas of study the user is closest to finishing.
+     * @return an ArrayList of Strings representing each other requirement for each closest area.
+     */
     public ArrayList<String> tiesGetOtherReqs(ArrayList<String> closestTies) {
         ArrayList<String> otherReqs = new ArrayList<>();
         
@@ -182,6 +217,13 @@ public class DegreeComparator {
         }
     }
 
+    /**
+     * Finds what other requirements (non-course related) there are from the entry in areasOfStudy for the
+     * closest area.
+     * 
+     * @param closestTies a String representing the area of study the user is closest to finishing.
+     * @return an ArrayList of Strings representing each other requirement.
+     */
     public String oneGetOtherReqs(String closestArea) {
         String otherReqs = "";
         ArrayList<String> tempReqs = new ArrayList<>();
